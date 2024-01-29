@@ -1,0 +1,68 @@
+/* .app {
+	text-align: center;
+} */
+
+
+ /* ---------------------- старые записи ---------------------------- */
+
+/* .app {
+	margin: auto;
+	margin-top: 10px;
+	padding: 10px;
+	width: 80%;
+	text-align: center;
+	border: 3px solid darkorange;
+	border-radius: 5px;
+	background-color: burlywood;
+	box-shadow:0 0 10px #000
+}
+
+.list {
+	border-left: 20px solid darkred;
+	border-radius: 5px;
+	background: gray;
+	color: antiquewhite;
+
+	margin: 10px;
+	padding: 5px 10px;
+	text-align: left;
+	background-color: darkorange;
+}
+
+.button {
+	margin: 5px;
+	border-radius: 5px;
+	background: rgb(66, 66, 66);
+	color: darkorange;
+}
+
+.input {
+	width: 20%;
+	margin-right: 10px;
+	border-radius: 3px;
+	background: rgb(66, 66, 66);
+	color: darkorange;
+
+}
+
+.loader {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 50px;
+	height: 50px;
+	border: 10px solid darkorange;
+	border-radius: 50%;
+	border-left-color: transparent;
+	animation: loader 1s infinite;
+}
+
+@keyframes loader {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+} */
