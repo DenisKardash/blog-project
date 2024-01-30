@@ -10,7 +10,6 @@ export const App = () => {
 		<Div>
 			<i className="fa fa-camera-retro"></i>
 			<i className="fa fa-suitcase"></i>
-			<i className="fa fa-suitcase"></i>
 			<Div>123</Div>
 		</Div>
 	);
