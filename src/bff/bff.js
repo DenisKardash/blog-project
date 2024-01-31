@@ -5,7 +5,9 @@ import { addUser } from './add-user';
 import { craeteSession } from './create-session';
 
 export const server = {
+	
 	async authorize(authLogin, authPassword) {
+
 		const user = await getUser(authLogin);
 
 		if (!user) {
