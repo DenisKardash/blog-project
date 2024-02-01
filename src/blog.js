@@ -1,6 +1,6 @@
 // import styles from './app.module.css';
 import { Routes, Route } from 'react-router-dom';
-import { Header } from './components';
+import { Header, Footer } from './components';
 
 import styled from 'styled-components';
 
@@ -29,10 +29,10 @@ const Content = styled.div`
 
 const H2 = styled.h2`
 	text-align: center;
-	// height: 1000px;
+	height: 1000px;
 `;
 
-const Footer = () => <div>Футер</div>; // пока заглушка
+// const Footer = () => <div>Футер</div>; // пока заглушка
 
 export const Blog = () => {
 	return (
