@@ -1,13 +1,17 @@
 // 7,8,9
-
 import { getUser } from './get-user';
 import { addUser } from './add-user';
-import { craeteSession } from './create-session';
+import { sessions } from './sessions';
+
+// import { craeteSession } from './create-session';
 
 export const server = {
 	
-	async authorize(authLogin, authPassword) {
+	async logout(session) {
+		sessions.remove(session);
+	},
 
+	async authorize(authLogin, authPassword) {
 		const user = await getUser(authLogin);
 
 		if (!user) {
@@ -27,7 +31,12 @@ export const server = {
 
 		return {
 			error: null,
-			res: craeteSession(user.role_id),
+			res: {
+				id: user.id,
+				login: user.login,
+				roleId: user.role_id,
+				session: sessions.create(user),
+			},
 		};
 	},
 
@@ -45,7 +54,12 @@ export const server = {
 
 		return {
 			error: null,
-			res: craeteSession(user.role_id),
+			res: {
+				id: user.id,
+				login: user.login,
+				roleId: user.role_id,
+				session: sessions.create(user),
+			},
 		};
 	},
 };

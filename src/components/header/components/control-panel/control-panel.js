@@ -1,40 +1,80 @@
-import { Icon } from '../../../../components';
+import { Link, useNavigate } from 'react-router-dom';
+import { Button, Icon } from '../../../../components';
 import styled from 'styled-components';
+
+import { ROLE } from '../../../../constants';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+	selectUserLogin,
+	selectUserRole,
+	selectUserSession,
+} from '../../../../selectors';
+import { logout } from '../../../../actions';
 
 // для выравнивания по правому краю
 const RightAligned = styled.div`
 	display: flex; // на блоки делит
 	justify-content: flex-end; // поместит в конце (справа)
+	align-items: center; //
 `;
 
-// Кнопку пока сделаем тут
-const Button = styled.button`
-	font-size: 16px;
-	width: 100px;
-	height: 25px;
-	margin-top: 5px;
+const StyledIcon = styled.div`
+	&:hover {
+		cursor: pointer;
+	}
+`;
 
-	// border-radius: 5px;
-
-	// // font-style: bold;
-	// color: white;
-	// // color: darkorange;
-	// background-color: #405060;
+const UserName = styled.div`
+	font-size: 18px;
+	font-weight: 600;
 `;
 
 const ControlPanelContainer = ({ className }) => {
+	const navigate = useNavigate();
+
+	const dispatch = useDispatch();
+	const roleId = useSelector(selectUserRole);
+	const login = useSelector(selectUserLogin);
+	const session = useSelector(selectUserSession);
+
 	return (
 		<div className={className}>
 			<RightAligned>
-				<Button>Войти</Button>
+				{roleId === ROLE.GUEST ? (
+					<Button height="30px">
+						<Link to="/login" style={{ color: '#fff' }}>
+							Войти
+						</Link>
+					</Button>
+				) : (
+					<>
+						<UserName>{login}</UserName>
+						<StyledIcon>
+							<Icon
+								id="fa fa-sign-out"
+								color="#405060"
+								margin="0 0 0 20px"
+								onClick={() => dispatch(logout(session))}
+							/>
+						</StyledIcon>
+					</>
+				)}
 			</RightAligned>
 			<RightAligned>
-				<Icon id="fa-backward" color="#405060" margin="10px 0 0 0" />
-				<Icon id="fa-file-text" color="#405060" margin="10px 0 0 16px" />
-				<Icon id="fa-users" color="#405060" margin="10px 0 0 16px" />
+				<StyledIcon onClick={() => navigate(-1)}>
+					<Icon id="fa-backward" color="#405060" margin="10px 0 0 0" />
+				</StyledIcon>
+				<Link to="/post">
+					<Icon id="fa-file-text" color="#405060" margin="10px 0 0 16px" />
+				</Link>
+				<Link to="/users">
+					<Icon id="fa-users" color="#405060" margin="10px 0 0 16px" />
+				</Link>
 			</RightAligned>
 		</div>
 	);
 };
 
-export const ControlPanel = styled(ControlPanelContainer)``;
+export const ControlPanel = styled(ControlPanelContainer)`
+	margin-top: 3px;
+`;

@@ -6,6 +6,7 @@ const FooterContainer = ({ className }) => {
 	const [city, setSity] = useState('');
 	const [temperature, setTemperature] = useState('');
 	const [weather, setWeather] = useState('');
+	const [weatherIcon, setWeatherIcon] = useState(''); // для иконок
 
 	useEffect(() => {
 		fetch(
@@ -17,8 +18,11 @@ const FooterContainer = ({ className }) => {
 				setSity(name);
 				setTemperature(Math.round(main.temp)); // ОКРУГЛИМ
 				setWeather(weather[0].description);
+				setWeatherIcon(weather[0].icon);
 			});
 	}, []);
+
+	// const weatherIcomPuth = `http://openweathermap.org/img/w/${weatherIcon}.png`;
 
 	return (
 		<div className={className}>
@@ -26,14 +30,18 @@ const FooterContainer = ({ className }) => {
 				<div>Блог веб-разработчика</div>
 				<div>dzianis.kardash@gmail.com</div>
 			</div>
+			<div style={{ marginRight: 420 }}></div>
+			<img
+				style={{ marginTop: 5 }}
+				src={`http://openweathermap.org/img/w/${weatherIcon}.png`}
+				alt="Icon depicting current weather."
+			></img>
+			<div>{temperature} °C</div>
 			<div>
 				<div>
 					{city}, {new Date().toLocaleString('ru', { day: 'numeric', month: 'long' })}
 				</div>
-				<div>
-					{temperature} °C - {weather}
-				</div>
-				{/* <div>{weather}</div> */}
+				<div style={{ marginTop: 5, fontSize: 12 }}>{weather}</div>
 			</div>
 		</div>
 	);
