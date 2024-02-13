@@ -6,7 +6,6 @@ import { sessions } from './sessions';
 // import { craeteSession } from './create-session';
 
 export const server = {
-	
 	async logout(session) {
 		sessions.remove(session);
 	},
@@ -41,25 +40,40 @@ export const server = {
 	},
 
 	async register(regLogin, regPassword) {
-		const user = await getUser(regLogin);
+		const existedUser = await getUser(regLogin); // существующий пользователь
 
-		if (user) {
+		if (existedUser) {
 			return {
 				error: 'this login is used',
 				res: null,
 			};
 		}
 
-		await addUser(regLogin, regPassword);
+		const user = await addUser(regLogin, regPassword); // добавим
+
+		// console.log('from addUser', user)
 
 		return {
 			error: null,
+
+			// НЕПОНЯТНЫЙ ВОПРОС (---ВФДАВАЛ ОШИБКУ---)
 			res: {
-				id: user.id,
-				login: user.login,
-				roleId: user.role_id,
+				id: user.id, // не мог прочитать
+				login: user.login, // не мог прочитать
+				roleId: user.role_id, // не мог прочитать
 				session: sessions.create(user),
 			},
 		};
 	},
 };
+
+// ВЫДАЕТ ОШИБКУ
+
+//ERROR Cannot read properties of undefined (reading 'id')
+// TypeError: Cannot read properties of undefined (reading 'id')
+// at Object.register (http://localhost:3000/static/js/bundle.js:515:18)
+
+// ------------ ОТВЕТ !!!!!
+
+// До этого мы получали User ---- для проверки (так же как и в авторизации)
+// и но теперь у нас Пользоватекль еще не создан поэтому переделываем

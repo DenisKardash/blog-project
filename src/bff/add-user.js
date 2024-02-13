@@ -7,10 +7,12 @@ export const addUser = (login, password) =>
 			'Content-Type': 'application/json; charset=utf-8',
 		},
 		body: JSON.stringify({
-			// когда свойства и значения совпадают то login: login  =  login,
 			login,
 			password,
 			registered_at: generateDate(),
 			role_id: 2,
 		}),
-	});
+	})
+	.then((createdUser) => createdUser.json());
+
+// когда свойства и значения совпадают то login: login  =  login,
