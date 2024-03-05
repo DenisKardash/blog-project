@@ -8,10 +8,17 @@
       "role_id": 0
     },
     {
-      "id": "4cff",
-      "login": "SkyeR2",
-      "password": "asdasdasd",
-      "registered_at": "2053-10-09 17:55",
+      "id": "827e",
+      "login": "DKS",
+      "password": "qweqweqwe",
+      "registered_at": "2052-12-16 23:05",
+      "role_id": 2
+    },
+    {
+      "id": "9395",
+      "login": "DKS2",
+      "password": "qweqweqwe",
+      "registered_at": "2062-10-29 21:14",
       "role_id": 2
     }
   ],

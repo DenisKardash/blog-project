@@ -18,12 +18,6 @@ const RightAligned = styled.div`
 	align-items: center; //
 `;
 
-const StyledIcon = styled.div`
-	&:hover {
-		cursor: pointer;
-	}
-`;
-
 const UserName = styled.div`
 	font-size: 18px;
 	font-weight: 600;
@@ -33,7 +27,7 @@ const ControlPanelContainer = ({ className }) => {
 	const navigate = useNavigate();
 
 	const dispatch = useDispatch();
-	
+
 	const roleId = useSelector(selectUserRole);
 	const login = useSelector(selectUserLogin);
 	const session = useSelector(selectUserSession);
@@ -50,26 +44,34 @@ const ControlPanelContainer = ({ className }) => {
 				) : (
 					<>
 						<UserName>{login}</UserName>
-						<StyledIcon>
-							<Icon
-								id="fa fa-sign-out"
-								color="#405060"
-								margin="0 0 0 20px"
-								onClick={() => dispatch(logout(session))}
-							/>
-						</StyledIcon>
+						<Icon
+							id="fa fa-sign-out"
+							title="LogOut"
+							color="#405060"
+							margin="0 0 0 20px"
+							onClick={() => dispatch(logout(session))}
+						/>
 					</>
 				)}
 			</RightAligned>
 			<RightAligned>
-				<StyledIcon onClick={() => navigate(-1)}>
-					<Icon id="fa-backward" color="#405060" margin="10px 0 0 0" />
-				</StyledIcon>
+				<Icon
+					id="fa-backward"
+					title="Return"
+					color="#405060"
+					margin="10px 0 0 0"
+					onClick={() => navigate(-1)}
+				></Icon>
 				<Link to="/post">
-					<Icon id="fa-file-text" color="#405060" margin="10px 0 0 16px" />
+					<Icon
+						id="fa-file-text"
+						title="New Post"
+						color="#405060"
+						margin="10px 0 0 16px"
+					/>
 				</Link>
 				<Link to="/users">
-					<Icon id="fa-users" color="#405060" margin="10px 0 0 16px" />
+					<Icon id="fa-users" title="Users" color="#405060" margin="10px 0 0 16px" />
 				</Link>
 			</RightAligned>
 		</div>

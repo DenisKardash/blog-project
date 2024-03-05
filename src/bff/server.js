@@ -1,70 +1,10 @@
-// 7,8,9
-import { getUser } from './get-user';
-import { addUser } from './add-user';
-import { sessions } from './sessions';
-
-// import { craeteSession } from './create-session';
+import { authorize, logout, register } from './operations';
 
 export const server = {
-	async logout(session) {
-		sessions.remove(session);
-	},
-
-	async authorize(authLogin, authPassword) {
-		const user = await getUser(authLogin);
-
-		if (!user) {
-			return {
-				error: 'User not found',
-				//res - response
-				res: null,
-			};
-		}
-
-		if (authPassword !== user.password) {
-			return {
-				error: 'password is incorrect',
-				res: null,
-			};
-		}
-
-		return {
-			error: null,
-			res: {
-				id: user.id,
-				login: user.login,
-				roleId: user.role_id,
-				session: sessions.create(user),
-			},
-		};
-	},
-
-	async register(regLogin, regPassword) {
-		const existedUser = await getUser(regLogin); // существующий пользователь
-
-		if (existedUser) {
-			return {
-				error: 'this login is used',
-				res: null,
-			};
-		}
-
-		const user = await addUser(regLogin, regPassword); // добавим
-
-		// console.log('from addUser', user)
-
-		return {
-			error: null,
-
-			// НЕПОНЯТНЫЙ ВОПРОС (---ВФДАВАЛ ОШИБКУ---)
-			res: {
-				id: user.id, // не мог прочитать
-				login: user.login, // не мог прочитать
-				roleId: user.role_id, // не мог прочитать
-				session: sessions.create(user),
-			},
-		};
-	},
+	authorize,
+	logout,
+	register,
+	// register: register,
 };
 
 // ВЫДАЕТ ОШИБКУ
